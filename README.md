@@ -1,24 +1,29 @@
-# README
+<!-- users名 -->
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column | Type | Options |
+| ------ | ---- | ------- |
+| 
 
-Things you may want to cover:
 
-* Ruby version
+<!-- Association -->
 
-* System dependencies
+<!-- items名 -->
 
-* Configuration
+| Column | Type | Options |
+| ------ | ---- | ------- |
 
-* Database creation
+<!-- Association -->
 
-* Database initialization
+<!-- purchase名 -->
 
-* How to run the test suite
+| Column | Type | Options |
+| ------ | ---- | ------- |
 
-* Services (job queues, cache servers, search engines, etc.)
+<!-- Association -->
 
-* Deployment instructions
+<!-- shipping名 -->
 
-* ...
+| Column | Type | Options |
+| ------ | ---- | ------- |
+
+<!-- Association -->
