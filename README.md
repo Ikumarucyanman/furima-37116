@@ -41,7 +41,6 @@
 | -------- | ---------- | ------------------------------ |
 | user     | references | null: false, foreign_key: true |
 | item     | references | null: false, foreign_key: true |
-| shipping | references |null: false, foreign_key: true |
 
 <!-- Association -->
 
@@ -57,8 +56,9 @@
 | prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
 | addresses     | string     | null: false                    |
-| building      | string     | ------------------------------ |
+| building      | string     |                                |
 | phone_number  | string     | null: false                    |
+| order         | references | null: false, foreign_key: true |
 
 <!-- Association -->
 
