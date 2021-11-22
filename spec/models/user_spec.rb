@@ -8,6 +8,7 @@ RSpec.describe User, type: :model do
   describe 'ユーザー新規登録' do
     context "新規登録できる時" do
       it "nickname、email、password、password_confirmation、last_name、first_name、last_name_kana、first_name_kana、birthdayが存在すれば保存できる" do
+        expect(@user).to be_valid
       end
     end
     context "新規登録できない時" do
@@ -67,6 +68,46 @@ RSpec.describe User, type: :model do
         @user.birthday = ""
         @user.valid?
         expect(@user.errors.full_messages).to include "Birthday can't be blank"
+      end
+      it "メールアドレスに@を含まない場合は登録できない" do
+        @user.email = "imo.imo"
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Email is invalid"
+      end
+      it "英字のみのパスワードでは登録できない" do
+        @user.password = "iiiiii"
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password には英字と数字の両方を含めて設定してください"
+      end
+      it "数字のみのパスワードでは登録できない" do
+        @user.password = "000000"
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password には英字と数字の両方を含めて設定してください"
+      end
+      it "全角文字を含むパスワードでは登録できない" do
+        @user.password = "イモイモイモ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password には英字と数字の両方を含めて設定してください"
+      end
+      it "姓(全角)に半角文字が含まれていると登録できない" do
+        @user.last_name = "ｱｲｳｴｵ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Last name 全角文字を使用してください"
+      end
+      it "名(全角)に半角文字が含まれていると登録できない" do
+        @user.first_name = "imo"
+        @user.valid?
+        expect(@user.errors.full_messages).to include "First name 全角文字を使用してください"
+      end
+      it "姓(カナ)にカタカナ以外の文字(平仮名•漢字•英数字•記号)が含まれていると登録できない" do
+        @user.last_name_kana = "あ,伊,f,!"
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Last name kana 全角カタカナを使用してください"
+      end
+      it "名(カナ)にカタカナ以外の文字(平仮名•漢字•英数字•記号)が含まれていると登録できない" do
+        @user.first_name_kana = "あ,伊,f,!"
+        @user.valid?
+        expect(@user.errors.full_messages).to include "First name kana 全角カタカナを使用してください"
       end
     end
   end
