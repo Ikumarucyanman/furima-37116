@@ -9,8 +9,8 @@ class User < ApplicationRecord
   validates :first_name_kana, presence: true
   validates :birthday, presence: true
 
-  has_many :items
-  has_many :orders
+  # has_many :items
+  # has_many :orders
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
