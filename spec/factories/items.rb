@@ -8,6 +8,9 @@ FactoryBot.define do
     prefecture_id {"4"}
     schedule_id   {"5"}
     price         {"10000"}
-    user_id       {"6"}
+    association :user
+    # after(:build) do |item|
+    #   item.image.attach(io: File.open('assets/images'), filename: 'comment.png')
+    # end
   end
 end

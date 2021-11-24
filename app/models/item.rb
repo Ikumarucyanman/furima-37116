@@ -6,8 +6,12 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :schedule
 
-  validates :name,          presence: true
-  validates :explanation,   presence: true
+  with_options presence: true do
+    # validates :image
+    validates :name
+    validates :explanation
+    validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
+  end
   validates :category_id,   numericality: { other_than: 1 , message: "can't be blank"}
   validates :status_id,     numericality: { other_than: 1 , message: "can't be blank"}
   validates :fee_id,        numericality: { other_than: 1 , message: "can't be blank"}
@@ -15,7 +19,7 @@ class Item < ApplicationRecord
   validates :schedule_id,   numericality: { other_than: 1 , message: "can't be blank"}
   validates :price,         presence: true
 
-  # belongs_to user
+  belongs_to :user
   has_one_attached :image
 
 end
