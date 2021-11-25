@@ -9,8 +9,8 @@ FactoryBot.define do
     schedule_id   {"5"}
     price         {"10000"}
     association :user
-    # after(:build) do |item|
-    #   item.image.attach(io: File.open('assets/images'), filename: 'comment.png')
-    # end
+    after(:build) do |item|
+      item.image.attach(io: File.open('app/assets/images/icon_camera.png'), filename: 'icon_camera.png')
+    end
   end
 end
