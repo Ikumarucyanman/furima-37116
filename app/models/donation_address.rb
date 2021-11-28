@@ -1,4 +1,4 @@
 class DonationAddress
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefecture, :city, :addresses, :building, :phone_number, :user_id
+  attr_accessor :user_id, :postal_code, :prefecture, :city, :addresses, :building, :phone_number
 end
