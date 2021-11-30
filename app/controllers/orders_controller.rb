@@ -1,13 +1,13 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: :index
+  before_action :set_order, only: [:index, :create]
+  # before_action :prevent_url, only: :index
 
   def index
-    @item = Item.find(params[:item_id])
     @order_shipping = OrderShipping.new
   end
 
   def create
-    # binding.pry
-    @item = Item.find(params[:item_id])
     @order_shipping = OrderShipping.new(order_shipping_params)
     if @order_shipping.valid?
       pay_item
@@ -32,5 +32,15 @@ class OrdersController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def set_order
+    @item = Item.find(params[:item_id])
+  end
+
+  # def prevent_url
+  #   if @item.purchase != nil
+  #     redirect_to root_path
+  #   end
+  # end
 
 end
