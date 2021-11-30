@@ -1,10 +1,12 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: :index
   before_action :set_order, only: [:index, :create]
-  # before_action :prevent_url, only: :index
 
   def index
     @order_shipping = OrderShipping.new
+    if current_user.id == @item.user.id
+      redirect_to root_path
+    end
   end
 
   def create
@@ -36,11 +38,5 @@ class OrdersController < ApplicationController
   def set_order
     @item = Item.find(params[:item_id])
   end
-
-  # def prevent_url
-  #   if @item.purchase != nil
-  #     redirect_to root_path
-  #   end
-  # end
 
 end
