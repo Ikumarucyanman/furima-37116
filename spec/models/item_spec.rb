@@ -7,7 +7,7 @@ RSpec.describe Item, type: :model do
   
   describe '商品投稿' do
     context "投稿ができる場合" do
-      it "image、name、explanation、category_id、status_id、fee_id、prefecture_id、schedule_id、price、user_idがない場合投稿できない" do
+      it "image、name、explanation、category_id、status_id、fee_id、prefecture_id、schedule_id、price、user_idがあれば投稿できる" do
         expect(@item).to be_valid
       end
     end
@@ -15,7 +15,6 @@ RSpec.describe Item, type: :model do
       it "商品画像が空では出品できない" do
         @item.image = nil
         @item.valid?
-        # binding.pry
         expect(@item.errors.full_messages).to include "Image can't be blank"
       end
       it "nameがなければ投稿できない" do
