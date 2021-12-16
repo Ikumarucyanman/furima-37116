@@ -3,7 +3,7 @@
   <div class='search-bar-contents'>
     <%= link_to image_tag("furima-logo-color.png", class:"furima-icon"), "/" %>
     <%= search_form_for @search, url: search_items_path, class: "search-form" do |f| %>
-      <%= f.text_field :name_cont, class: "input-box", placeholder: 'キーワードから探す' %>
+      <%= f.text_field :name_cont, class: "input-box", placeholder: '商品名から探す' %>
       <button class="search-button">
         <%= image_tag "search.png", class:"search-icon" %>
       </button>
